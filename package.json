@@ -65,7 +65,7 @@
     "calendar",
     "project management"
   ],
-  "homepage": "https://github.com/guiqui/react-timeline-gantt",
+  "homepage": "https://github.com/rickcha/react-timeline-gantt#ensightful",
   "dependencies": {
     "moment": "^2.24.0",
     "opencollective": "^1.0.3",
