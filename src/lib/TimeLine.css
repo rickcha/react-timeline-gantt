@@ -20,10 +20,11 @@
   flex-direction: column;
   overflow-y: hidden;
 }
+
 /* Main Area Header*/
 
 .timeLine-main-header-viewPort {
-  flex: 0 0 60px;
+  flex: 0 0 90px;
   position: relative;
   height: 60px;
   width: 100%;
@@ -32,7 +33,7 @@
 }
 
 .timeLine-main-header-container {
-  flex: 0 0 60px;
+  flex: 0 0 90px;
   position: relative;
   top: 0;
   left: 0;
@@ -100,14 +101,16 @@
   text-align: center;
   padding-top: 5px;
 }
+
 /* Main Area Data*/
 
 .timeLine-main-data-viewPort {
   flex: 1 1 auto;
   position: relative;
   overflow: hidden;
-  background-color: #fbf9f9;
+  background-color: transparent;
 }
+
 .timeLine-main-data-container {
   position: relative;
   top: 0;
@@ -138,6 +141,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .timeLine-main-data-task-side-linker {
   width: 8px;
   height: 8px;
@@ -145,10 +149,12 @@
   cursor: default;
   z-index: 100;
 }
+
 .timeLine-main-data-task-side-linker:hover {
   background-color: black;
   border: solid 0.5px grey;
 }
+
 /* .timeLine-main-data-task:hover {
     background-color:chocolate;
     border:solid 2px darkorchid;
@@ -192,9 +198,9 @@
   border-right: solid 1px rgb(207, 207, 205);
   height: 100%;
 }
+
 .squareGrip {
   flex: 0 0 auto;
-
   border-radius: 50%;
   height: 5px;
   width: 5px;
@@ -202,7 +208,7 @@
 }
 
 .timeLine-side-title {
-  flex: 0 0 60px;
+  flex: 0 0 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +218,7 @@
   position: relative;
   flex: 1 1 auto;
   height: 100%;
-  background-color: #fbf9f9;
+  background-color: transparent;
   overflow-x: hidden;
   overflow-y: auto;
 }

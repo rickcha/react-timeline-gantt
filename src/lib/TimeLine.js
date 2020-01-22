@@ -65,15 +65,18 @@ class TimeLine extends Component {
   ////////////////////
 
   getDayWidth(mode) {
+    const dayWidth = this.props.dayWidth;
+    const hourWidth = this.props.hourWidth;
+
     switch (mode) {
       case VIEW_MODE_DAY:
-        return DAY_DAY_MODE;
+        return hourWidth * 24 * 3 || DAY_DAY_MODE; // 1440 each hour 60 px
       case VIEW_MODE_WEEK:
-        return DAY_WEEK_MODE;
+        return hourWidth * 24 || DAY_WEEK_MODE; // 480 each hour 20 px
       case VIEW_MODE_MONTH:
-        return DAY_MONTH_MODE;
+        return dayWidth || DAY_MONTH_MODE; // 24
       case VIEW_MODE_YEAR:
-        return DAY_YEAR_MODE;
+        return dayWidth / 6 || DAY_YEAR_MODE; // 4
       default:
         return DAY_MONTH_MODE;
     }

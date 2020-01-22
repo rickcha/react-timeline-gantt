@@ -3,7 +3,7 @@ import TimeLine from "libs/TimeLine";
 import Generator from "./Generator";
 import "./App.css";
 
-const config = {
+let config = {
   header: {
     month: {
       dateFormat: "MMMM  YYYY",
@@ -31,45 +31,92 @@ const config = {
         color: "white"
       }
     }
+  }
+};
+
+config = {
+  header: {
+    // borderLeft cannot be changed
+    top: {
+      style: {
+        backgroundColor: "white",
+        color: "#3c3c3cbf",
+        fontSize: 12,
+        borderLeft: "1px solid #b7b7bb",
+        paddingVertical: 0,
+        borderBottom: "0.5px solid #b7b7bb"
+      }
+    },
+    middle: {
+      style: {
+        backgroundColor: "#fff",
+        color: "#3c3c3cbf",
+        borderBottom: "none",
+        fontSize: 12
+      },
+      selectedStyle: { backgroundColor: "#b13525" }
+    },
+    bottom: {
+      style: {
+        background: "#fff",
+        color: "#3c3c3c80",
+        borderBottom: "0.5px solid #b7b7bb"
+      },
+      selectedStyle: { backgroundColor: "#fff", fontWeight: "bold" }
+    }
   },
   taskList: {
     title: {
-      label: "Task Todo",
+      label: "Tasks",
       style: {
-        background: "linear-gradient( grey, black)"
+        backgroundColor: "#fff",
+        borderBottom: "0.5px solid #b7b7bb",
+        color: "#3c3c3cbf",
+        textAlign: "center"
       }
     },
     task: {
       style: {
-        backgroundColor: "grey",
-        color: "white"
+        color: "#3C3C3C",
+        backgroundColor: "#fff",
+        borderBottom: "0.5px solid transparent"
       }
     },
     verticalSeparator: {
-      style: {
-        backgroundColor: "#fbf9f9"
-      },
+      style: { backgroundColor: "#fff" },
       grip: {
-        style: {
-          backgroundColor: "red"
-        }
+        style: { backgroundColor: "#cfcfcd" }
       }
     }
   },
   dataViewPort: {
     rows: {
       style: {
-        backgroundColor: "white",
-        borderBottom: "solid 0.5px silver"
+        backgroundColor: "#fff",
+        borderBottom: "solid 0.5px #fff"
       }
     },
     task: {
-      showLabel: true,
+      showLabel: false,
       style: {
-        borderRadius: 1,
-        boxShadow: "2px 2px 8px #888888"
+        position: "absolute",
+        borderRadius: 5,
+        color: "grey",
+        textAlign: "center",
+        backgroundColor: "lightgrey",
+        border: `1px solid grey`
+      },
+      selectedStyle: {
+        borderRadius: 5,
+        color: "blue",
+        backgroundColor: "blue",
+        border: "3px solid blue"
       }
     }
+  },
+  links: {
+    color: "black",
+    selectedColor: "blue"
   }
 };
 
@@ -79,7 +126,7 @@ class App extends Component {
     let result = Generator.generateData();
     this.data = result.data;
     this.state = {
-      itemheight: 20,
+      itemheight: 30,
       data: [],
       selectedItem: null,
       timelineMode: "month",
@@ -267,8 +314,9 @@ class App extends Component {
         </div>
         <div className="time-line-container">
           <TimeLine
-            // config={config}
-            data={this.state.data}
+            dayWidth={50}
+            config={config}
+            data={this.state.data.splice(0, 10)}
             links={this.state.links}
             onHorizonChange={this.onHorizonChange}
             onSelectItem={this.onSelectItem}
