@@ -5,37 +5,6 @@ import "./App.css";
 
 let config = {
   header: {
-    month: {
-      dateFormat: "MMMM  YYYY",
-      style: {
-        background: "linear-gradient( grey, black)",
-        textShadow: "0.5px 0.5px black",
-        fontSize: 12
-      }
-    },
-    dayOfWeek: {
-      style: {
-        background: "linear-gradient( orange, grey)",
-        fontSize: 9
-      }
-    },
-    dayTime: {
-      style: {
-        background: "linear-gradient( grey, black)",
-        fontSize: 9,
-        color: "orange"
-      },
-      selectedStyle: {
-        background: "linear-gradient( #d011dd ,#d011dd)",
-        fontWeight: "bold",
-        color: "white"
-      }
-    }
-  }
-};
-
-config = {
-  header: {
     // borderLeft cannot be changed
     top: {
       style: {
@@ -124,7 +93,57 @@ class App extends Component {
   constructor(props) {
     super(props);
     let result = Generator.generateData();
-    this.data = result.data;
+    this.data = [
+      {
+        id: "c7f4f984-1b61-416c-903c-288eb6bc7406",
+        name: "Username should be case-insensitive during login",
+        start: 1579559820480,
+        end: 1580239655140,
+        collection: "tasks"
+      },
+      {
+        id: "f6d40111-7c32-4a63-a30b-1381f276aabb",
+        name: "User should be able to save empty text in email",
+        start: 1580372977616,
+        end: 1581838074724,
+        collection: "tasks"
+      },
+      {
+        id: "8fb6c893-6140-4fc4-996c-621491989fac",
+        name: "Backward compatibility with the previous db schema",
+        start: 1579980493909,
+        end: 1580326093909,
+        collection: "tasks"
+      },
+      {
+        id: "aaba172e-ef08-4e5f-af40-6f3a1880c71c",
+        name: "[Bug] Chat messages are not loading fast enough/incorrect order",
+        start: 1580941717893,
+        end: 1581517717893,
+        collection: "tasks"
+      },
+      {
+        id: "2f4ed0b8-5093-4d24-9d4f-c9e62bf047d5",
+        name: "[Design] Redesign marketing website ",
+        start: 1579030148986,
+        end: 1579721348986,
+        collection: "tasks"
+      },
+      {
+        id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
+        name: "Research Libraries",
+        start: 1582543774191,
+        end: 1583000974191,
+        collection: "tasks"
+      },
+      {
+        id: "8acd82d4-e036-4e16-95bd-9410b0bf153c",
+        name: "Setup Visual Studio",
+        start: 1580289591874,
+        end: 1580872791874,
+        collection: "tasks"
+      }
+    ];
     this.state = {
       itemheight: 30,
       data: [],

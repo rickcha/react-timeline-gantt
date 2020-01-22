@@ -26,7 +26,7 @@
 .timeLine-main-header-viewPort {
   flex: 0 0 90px;
   position: relative;
-  height: 60px;
+  height: 90px;
   width: 100%;
   background-color: rgb(112, 112, 112);
   overflow: hidden;
