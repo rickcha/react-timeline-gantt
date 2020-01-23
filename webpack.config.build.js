@@ -7,7 +7,7 @@ module.exports ={
     path:path.resolve('dist'),
     filename:'index.js',
     libraryTarget: 'umd',
-    library: 'https://github.com/rickcha/react-timeline-gantt#ensightful',
+    library: 'https://github.com/rickcha/react-timeline-gantt',
     umdNamedDefine: true  
   },
   resolve: {      
