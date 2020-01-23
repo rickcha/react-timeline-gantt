@@ -149,7 +149,22 @@ class App extends Component {
       data: [],
       selectedItem: null,
       timelineMode: "month",
-      links: result.links,
+      links: [
+        {
+          _id: "5e28ae9168d7960007ef7e19",
+          start: "f6d40111-7c32-4a63-a30b-1381f276aabb",
+          end: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
+          active: true,
+          id: "998b79ff-0d68-4b30-9a77-b9cf11a4eb39",
+          courseId: "e1772f2c-141c-4b79-938a-62fdb2664515",
+          groupId: "80472564-a837-4847-bbe0-9e8cbe2f1dc5",
+          collection: "links",
+          createdBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
+          createdOn: 1579724433431,
+          modifiedBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
+          modifiedOn: 1579724433431
+        }
+      ],
       nonEditableName: false
     };
   }
