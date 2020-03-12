@@ -21,7 +21,7 @@ let config = {
         backgroundColor: "#fff",
         color: "#3c3c3cbf",
         borderBottom: "none",
-        fontSize: 12
+        fontSize: 14
       },
       selectedStyle: { backgroundColor: "#b13525" }
     },
@@ -62,24 +62,30 @@ let config = {
     rows: {
       style: {
         backgroundColor: "#fff",
-        borderBottom: "solid 0.5px #fff"
+        borderBottom: "solid 0.5px #B7B7BB"
       }
     },
     task: {
-      showLabel: false,
+      showLabel: true,
+      labelStyle: {
+        color: "#fff",
+        fontSize: 14,
+        whiteSpace: "nowrap",
+        textAlign: "left",
+        lineHeight: "30px",
+        marginLeft: 10
+      },
       style: {
         position: "absolute",
         borderRadius: 5,
         color: "grey",
-        textAlign: "center",
-        backgroundColor: "lightgrey",
-        border: `1px solid grey`
+        backgroundColor: "lightgrey"
       },
       selectedStyle: {
         borderRadius: 5,
         color: "blue",
-        backgroundColor: "blue",
-        border: "3px solid blue"
+        border: "none",
+        backgroundColor: "blue"
       }
     }
   },
@@ -92,62 +98,167 @@ let config = {
 class App extends Component {
   constructor(props) {
     super(props);
-    let result = Generator.generateData();
-    this.data = [
-      {
-        id: "c7f4f984-1b61-416c-903c-288eb6bc7406",
-        name: "Username should be case-insensitive during login",
-        start: 1579559820480,
-        end: 1580239655140,
-        collection: "tasks"
-      },
-      {
-        id: "f6d40111-7c32-4a63-a30b-1381f276aabb",
-        name: "User should be able to save empty text in email",
-        start: 1580372977616,
-        end: 1581838074724,
-        collection: "tasks"
-      },
-      {
-        id: "8fb6c893-6140-4fc4-996c-621491989fac",
-        name: "Backward compatibility with the previous db schema",
-        start: 1579980493909,
-        end: 1580326093909,
-        collection: "tasks"
-      },
-      {
-        id: "aaba172e-ef08-4e5f-af40-6f3a1880c71c",
-        name: "[Bug] Chat messages are not loading fast enough/incorrect order",
-        start: 1580941717893,
-        end: 1581517717893,
-        collection: "tasks"
-      },
-      {
-        id: "2f4ed0b8-5093-4d24-9d4f-c9e62bf047d5",
-        name: "[Design] Redesign marketing website ",
-        start: 1579030148986,
-        end: 1579721348986,
-        collection: "tasks"
-      },
-      {
-        id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
-        name: "Research Libraries",
-        start: 1582543774191,
-        end: 1583000974191,
-        collection: "tasks"
-      },
-      {
-        id: "8acd82d4-e036-4e16-95bd-9410b0bf153c",
-        name: "Setup Visual Studio",
-        start: 1580289591874,
-        end: 1580872791874,
-        collection: "tasks"
-      }
-    ];
     this.state = {
       itemheight: 30,
-      data: [],
-      selectedItem: null,
+      data: [
+        {
+          id: "c7f4f984-1b61-416c-903c-288eb6bc7406",
+          name: "Username should be case-insensitive during login",
+          start: 1579451820480,
+          end: 1580131655140,
+          status: "inProgress",
+          collection: "tasks",
+          color: "#FF9A21"
+        },
+        {
+          id: "f6d40111-7c32-4a63-a30b-1381f276aabb",
+          name: "User should be able to save empty text in email",
+          start: 1580596177616,
+          end: 1581337674724,
+          status: "toDo",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "8fb6c893-6140-4fc4-996c-621491989fac",
+          name: "Backward compatibility with the previous db schema",
+          start: 1584040385174,
+          end: 1585040385174,
+          status: "underReview",
+          collection: "tasks",
+          color: "#4DD87A"
+        },
+        {
+          id: "aab3172e-ef08-4e5f-af40-6f3a1880c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1584040385174,
+          end: 1585040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba172e-ef08-4e5f-af42-6f3a1880c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba172e-ef08-4e5f-af40-6f3a1881c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba172e-ef08-4e5f-af40-6f3a1580c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba172e-ef08-7e5f-af40-6f3a1880c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba372e-ef08-4e5f-af40-6f3a1880c71c",
+          name:
+            "[Bug] Chat msdfsdessages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: "red"
+        },
+        {
+          id: "aaba472e-ef08-4e5f-af40-6f3a1880c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "aaba152e-ef08-4e5f-af40-6f3a1880c71c",
+          name:
+            "[Bug] Chat messages are not loading fast enough/incorrect order",
+          start: 1585140385174,
+          end: 1586040385174,
+          status: "completed",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "2f4ed0b8-5093-4d24-9d4f-c9e62bf047d5",
+          name: "[Design] Redesign marketing website ",
+          start: 1578814148986,
+          end: 1579505348986,
+          status: "inProgress",
+          collection: "tasks",
+          color: "#F8591E"
+        },
+        {
+          id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
+          name: "Research Libraries",
+          start: 1581604174191,
+          end: 1582061374191,
+          status: "toDo",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
+          name: "Research Libraries",
+          start: 1581604174191,
+          end: 1582061374191,
+          status: "toDo",
+          collection: "tasks",
+          color: null
+        },
+        {
+          id: "8acd82d4-e036-4e16-95bd-9410b0bf153c",
+          name: "Setup Visual Studio",
+          start: 1579540791874,
+          end: 1579875591874,
+          status: "toDo",
+          collection: "tasks",
+          color: "#FF9A21"
+        }
+      ],
+      selectedItem: {
+        _id: "5e28ae9168d7960007ef7e19",
+        start: "f6d40111-7c32-4a63-a30b-1381f276aabb",
+        end: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
+        active: true,
+        id: "998b79ff-0d68-4b30-9a77-b9cf11a4eb39",
+        courseId: "e1772f2c-141c-4b79-938a-62fdb2664515",
+        groupId: "80472564-a837-4847-bbe0-9e8cbe2f1dc5",
+        collection: "links",
+        createdBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
+        createdOn: 1579724433431,
+        modifiedBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
+        modifiedOn: 1579724433431
+      },
       timelineMode: "month",
       links: [
         {
@@ -169,28 +280,18 @@ class App extends Component {
     };
   }
 
-  handleDayWidth = e => {
-    this.setState({ daysWidth: parseInt(e.target.value) });
-  };
-
-  handleItemHeight = e => {
-    this.setState({ itemheight: parseInt(e.target.value) });
-  };
-
   onHorizonChange = (start, end) => {
-    let result = this.data.filter(item => {
+    let result = this.state.data.filter(item => {
       return (
         (item.start < start && item.end > end) ||
         (item.start > start && item.start < end) ||
         (item.end > start && item.end < end)
       );
     });
-    console.log("Calculating ");
     this.setState({ data: result });
   };
 
   onSelectItem = item => {
-    console.log(`Select Item ${item}`);
     this.setState({ selectedItem: item });
   };
 
@@ -198,7 +299,6 @@ class App extends Component {
     item.start = props.start;
     item.end = props.end;
     this.setState({ data: [...this.state.data] });
-    console.log(`Update Item ${item}`);
   };
 
   onCreateLink = item => {
@@ -348,18 +448,18 @@ class App extends Component {
         </div>
         <div className="time-line-container">
           <TimeLine
-            dayWidth={50}
+            dayWidth={40}
             config={config}
-            data={this.state.data.splice(0, 10)}
+            data={this.state.data}
             links={this.state.links}
             onHorizonChange={this.onHorizonChange}
             onSelectItem={this.onSelectItem}
             onUpdateTask={this.onUpdateTask}
             onCreateLink={this.onCreateLink}
             mode={this.state.timelineMode}
-            itemheight={this.state.itemheight}
+            itemheight={35}
             selectedItem={this.state.selectedItem}
-            nonEditableName={this.state.nonEditableName}
+            nonEditableName={true}
           />
         </div>
       </div>

@@ -26,6 +26,18 @@ export class HeaderItem extends PureComponent {
       paddingVertical = style.paddingVertical || borderLeft;
     }
 
+    const styleDate = this.props.dateToday && {
+      backgroundColor: "#6347FF",
+      color: "#fff",
+      borderTopRightRadius: "5px 5px",
+      borderTopLeftRadius: "5px 5px"
+    };
+
+    const styleDay = this.props.dayToday && {
+      backgroundColor: "#6347FF",
+      color: "#FFFFFF80"
+    };
+
     return (
       <div
         style={{
@@ -38,7 +50,9 @@ export class HeaderItem extends PureComponent {
           left: this.props.left,
           width: this.props.width,
           paddingTop: paddingVertical,
-          paddingBottom: paddingVertical
+          paddingBottom: paddingVertical,
+          ...styleDate,
+          ...styleDay
         }}
       >
         <div>{this.props.label}</div>
@@ -180,6 +194,7 @@ export default class Header extends PureComponent {
         result.middle.push(
           <HeaderItem
             key={i}
+            dateToday={i === 0}
             header="middle"
             left={box.left}
             width={box.width}
@@ -198,6 +213,7 @@ export default class Header extends PureComponent {
           result.bottom.push(
             <HeaderItem
               key={i}
+              dayToday={i === 0}
               header="bottom"
               left={box.left}
               width={box.width}
