@@ -11,13 +11,13 @@ import {
   VIEW_MODE_DAY,
   VIEW_MODE_WEEK,
   VIEW_MODE_MONTH,
-  VIEW_MODE_YEAR
+  VIEW_MODE_YEAR,
 } from "libs/Const";
 import {
   DAY_MONTH_MODE,
   DAY_WEEK_MODE,
   DAY_DAY_MODE,
-  DAY_YEAR_MODE
+  DAY_YEAR_MODE,
 } from "libs/Const";
 import DataController from "libs/controller/DataController";
 import Config from "libs/helpers/config/Config";
@@ -56,7 +56,7 @@ class TimeLine extends Component {
       links: [],
       mode: this.props.mode ? this.props.mode : VIEW_MODE_MONTH,
       size: { width: 1, height: 1 },
-      changingTask: null
+      changingTask: null,
     };
   }
 
@@ -86,7 +86,7 @@ class TimeLine extends Component {
   //     ON SIZE    //
   ////////////////////
 
-  onSize = size => {
+  onSize = (size) => {
     //If size has changed
     this.calculateVerticalScrollVariables(size);
     if (!this.initialise) {
@@ -111,7 +111,7 @@ class TimeLine extends Component {
       numVisibleDays: newNumVisibleDays,
       startRow: rowInfo.start,
       endRow: rowInfo.end,
-      size: size
+      size: size,
     });
   };
 
@@ -119,7 +119,7 @@ class TimeLine extends Component {
   //   VIEWPORT CHANGES  //
   /////////////////////////
 
-  verticalChange = scrollTop => {
+  verticalChange = (scrollTop) => {
     if (scrollTop == this.state.scrollTop) return;
     //Check if we have scrolling rows
     let rowInfo = this.calculateStartEndRows(
@@ -132,7 +132,7 @@ class TimeLine extends Component {
         (this.state = {
           scrollTop: scrollTop,
           startRow: rowInfo.start,
-          endRow: rowInfo.end
+          endRow: rowInfo.end,
         })
       );
     }
@@ -156,7 +156,7 @@ class TimeLine extends Component {
     );
   };
 
-  horizontalChange = newScrollLeft => {
+  horizontalChange = (newScrollLeft) => {
     let new_nowposition = this.state.nowposition;
     let new_left = -1;
     let headerData = this.state.headerData;
@@ -199,12 +199,12 @@ class TimeLine extends Component {
         headerData: headerData,
         scrollLeft: new_left,
         startRow: new_startRow,
-        endRow: new_endRow
+        endRow: new_endRow,
       })
     );
   };
 
-  calculateVerticalScrollVariables = size => {
+  calculateVerticalScrollVariables = (size) => {
     //The pixel to scroll verically is equal to the pecentage of what the viewport represent in the context multiply by the context width
     this.pxToScroll =
       (1 - size.width / DATA_CONTAINER_WIDTH) * DATA_CONTAINER_WIDTH - 1;
@@ -219,11 +219,11 @@ class TimeLine extends Component {
   //   MOUSE EVENTS  //
   /////////////////////
 
-  doMouseDown = e => {
+  doMouseDown = (e) => {
     this.dragging = true;
     this.draggingPosition = e.clientX;
   };
-  doMouseMove = e => {
+  doMouseMove = (e) => {
     if (this.dragging) {
       let delta = this.draggingPosition - e.clientX;
 
@@ -233,23 +233,23 @@ class TimeLine extends Component {
       }
     }
   };
-  doMouseUp = e => {
+  doMouseUp = (e) => {
     this.dragging = false;
   };
-  doMouseLeave = e => {
+  doMouseLeave = (e) => {
     // if (!e.relatedTarget.nodeName)
     //     this.dragging=false;
     this.dragging = false;
   };
 
-  doTouchStart = e => {
+  doTouchStart = (e) => {
     this.dragging = true;
     this.draggingPosition = e.touches[0].clientX;
   };
-  doTouchEnd = e => {
+  doTouchEnd = (e) => {
     this.dragging = false;
   };
-  doTouchMove = e => {
+  doTouchMove = (e) => {
     if (this.dragging) {
       let delta = this.draggingPosition - e.touches[0].clientX;
 
@@ -259,19 +259,19 @@ class TimeLine extends Component {
       }
     }
   };
-  doTouchCancel = e => {
+  doTouchCancel = (e) => {
     this.dragging = false;
   };
 
-  doMouseLeave = e => {
+  doMouseLeave = (e) => {
     // if (!e.relatedTarget.nodeName)
     //     this.dragging=false;
     this.dragging = false;
   };
 
   //Child communicating states
-  onTaskListSizing = delta => {
-    this.setState(prevState => {
+  onTaskListSizing = (delta) => {
+    this.setState((prevState) => {
       let result = { ...prevState };
       result.sideStyle = { width: result.sideStyle.width - delta };
       return result;
@@ -282,7 +282,7 @@ class TimeLine extends Component {
   //   ITEMS EVENTS  //
   /////////////////////
 
-  onSelectItem = item => {
+  onSelectItem = (item) => {
     if (this.props.onSelectItem && item != this.props.selectedItem)
       this.props.onSelectItem(item);
   };
@@ -291,7 +291,7 @@ class TimeLine extends Component {
     console.log(`Start Link ${task}`);
     this.setState({
       interactiveMode: true,
-      taskToCreate: { task: task, position: position }
+      taskToCreate: { task: task, position: position },
     });
   };
 
@@ -300,22 +300,22 @@ class TimeLine extends Component {
     if (this.props.onCreateLink && task) {
       this.props.onCreateLink({
         start: this.state.taskToCreate,
-        end: { task: task, position: position }
+        end: { task: task, position: position },
       });
     }
     this.setState({
       interactiveMode: false,
-      taskToCreate: null
+      taskToCreate: null,
     });
   };
 
-  onTaskChanging = changingTask => {
+  onTaskChanging = (changingTask) => {
     this.setState({
-      changingTask: changingTask
+      changingTask: changingTask,
     });
   };
 
-  calcNumVisibleDays = size => {
+  calcNumVisibleDays = (size) => {
     return Math.ceil(size.width / this.state.dayWidth) + BUFFER_DAYS;
   };
   checkMode() {
@@ -374,7 +374,9 @@ class TimeLine extends Component {
             onScroll={this.verticalChange}
             nonEditable={this.props.nonEditableName}
           />
-          <VerticalSpliter onTaskListSizing={this.onTaskListSizing} />
+          {!Config.values.taskList.verticalSeparator.disable && (
+            <VerticalSpliter onTaskListSizing={this.onTaskListSizing} />
+          )}
         </div>
         <div className="timeLine-main">
           <Header
@@ -413,7 +415,7 @@ class TimeLine extends Component {
             onFinishCreateLink={this.onFinishCreateLink}
             boundaries={{
               lower: this.state.scrollLeft,
-              upper: this.state.scrollLeft + this.state.size.width
+              upper: this.state.scrollLeft + this.state.size.width,
             }}
             onSize={this.onSize}
           />
@@ -444,13 +446,13 @@ class TimeLine extends Component {
 TimeLine.propTypes = {
   itemheight: PropTypes.number.isRequired,
   dayWidth: PropTypes.number.isRequired,
-  nonEditableName: PropTypes.bool
+  nonEditableName: PropTypes.bool,
 };
 
 TimeLine.defaultProps = {
   itemheight: 20,
   dayWidth: 24,
-  nonEditableName: false
+  nonEditableName: false,
 };
 
 export default TimeLine;

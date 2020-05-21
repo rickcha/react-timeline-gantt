@@ -3,67 +3,82 @@ import TimeLine from "libs/TimeLine";
 import Generator from "./Generator";
 import "./App.css";
 
+const color = {
+  // Lea's Design
+  blurple: "#6347ff",
+  blurple_alpha: "#f5f0ff",
+
+  // Ant Design
+  blue: "#1890ff",
+  toDo: "#9E35EB",
+  inProgress: "#FFCA53",
+  underReview: "#FF9A21",
+  completed: "#4DD87A",
+};
+
 let config = {
   header: {
     // borderLeft cannot be changed
     top: {
       style: {
-        backgroundColor: "white",
-        color: "#3c3c3cbf",
-        fontSize: 12,
-        borderLeft: "1px solid #b7b7bb",
-        paddingVertical: 0,
-        borderBottom: "0.5px solid #b7b7bb"
-      }
+        fontSize: 10,
+        backgroundColor: "transparent",
+        color: "rgba(0, 0, 0, 0.6)",
+        justifyContent: "flex-start",
+      },
     },
     middle: {
       style: {
-        backgroundColor: "#fff",
-        color: "#3c3c3cbf",
+        fontSize: 16,
+        backgroundColor: "transparent",
+        color: "rgba(0, 0, 0, 0.87)",
         borderBottom: "none",
-        fontSize: 14
       },
-      selectedStyle: { backgroundColor: "#b13525" }
+      selectedStyle: { backgroundColor: "#b13525" },
     },
     bottom: {
       style: {
-        background: "#fff",
-        color: "#3c3c3c80",
-        borderBottom: "0.5px solid #b7b7bb"
+        fontSize: 10,
+        backgroundColor: "transparent",
+        color: "#9E9E9E",
+        borderBottom: "1px solid #C4C4C4",
       },
-      selectedStyle: { backgroundColor: "#fff", fontWeight: "bold" }
-    }
+      selectedStyle: { backgroundColor: "#fff", fontWeight: "bold" },
+    },
   },
   taskList: {
     title: {
       label: "Tasks",
       style: {
-        backgroundColor: "#fff",
-        borderBottom: "0.5px solid #b7b7bb",
-        color: "#3c3c3cbf",
-        textAlign: "center"
-      }
+        fontSize: 16,
+        color: "rgba(0, 0, 0, 0.87)",
+        backgroundColor: "white",
+        borderBottom: "0px",
+        borderTopRightRadius: "5px 5px",
+        borderTopLeftRadius: "5px 5px",
+      },
     },
     task: {
       style: {
-        color: "#3C3C3C",
-        backgroundColor: "#fff",
-        borderBottom: "0.5px solid transparent"
-      }
+        fontSize: 16,
+        color: "rgba(0, 0, 0, 0.87)",
+        borderBottom: "0px",
+      },
     },
     verticalSeparator: {
-      style: { backgroundColor: "#fff" },
+      disable: true,
+      style: { backgroundColor: "red" },
       grip: {
-        style: { backgroundColor: "#cfcfcd" }
-      }
-    }
+        style: { backgroundColor: "#cfcfcd" },
+      },
+    },
   },
   dataViewPort: {
     rows: {
       style: {
-        backgroundColor: "#fff",
-        borderBottom: "solid 0.5px #B7B7BB"
-      }
+        backgroundColor: "transparent",
+        borderBottom: "0px",
+      },
     },
     task: {
       showLabel: true,
@@ -73,26 +88,25 @@ let config = {
         whiteSpace: "nowrap",
         textAlign: "left",
         lineHeight: "30px",
-        marginLeft: 10
+        marginLeft: 10,
       },
       style: {
         position: "absolute",
         borderRadius: 5,
         color: "grey",
-        backgroundColor: "lightgrey"
+        backgroundColor: "lightgrey",
       },
       selectedStyle: {
         borderRadius: 5,
-        color: "blue",
         border: "none",
-        backgroundColor: "blue"
-      }
-    }
+        backgroundColor: color.blurple,
+      },
+    },
   },
   links: {
     color: "black",
-    selectedColor: "blue"
-  }
+    selectedColor: "blue",
+  },
 };
 
 class App extends Component {
@@ -104,146 +118,87 @@ class App extends Component {
         {
           id: "c7f4f984-1b61-416c-903c-288eb6bc7406",
           name: "Username should be case-insensitive during login",
-          start: 1579451820480,
-          end: 1580131655140,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "inProgress",
           collection: "tasks",
-          color: "#FF9A21"
+          color: "#FF9A21",
         },
         {
           id: "f6d40111-7c32-4a63-a30b-1381f276aabb",
           name: "User should be able to save empty text in email",
-          start: 1580596177616,
-          end: 1581337674724,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "toDo",
           collection: "tasks",
-          color: null
+          color: null,
         },
         {
           id: "8fb6c893-6140-4fc4-996c-621491989fac",
           name: "Backward compatibility with the previous db schema",
-          start: 1584040385174,
-          end: 1585040385174,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "underReview",
           collection: "tasks",
-          color: "#4DD87A"
-        },
-        {
-          id: "aab3172e-ef08-4e5f-af40-6f3a1880c71c",
-          name:
-            "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1584040385174,
-          end: 1585040385174,
-          status: "completed",
-          collection: "tasks",
-          color: null
-        },
-        {
-          id: "aaba172e-ef08-4e5f-af42-6f3a1880c71c",
-          name:
-            "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
-          status: "completed",
-          collection: "tasks",
-          color: null
-        },
-        {
-          id: "aaba172e-ef08-4e5f-af40-6f3a1881c71c",
-          name:
-            "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
-          status: "completed",
-          collection: "tasks",
-          color: null
-        },
-        {
-          id: "aaba172e-ef08-4e5f-af40-6f3a1580c71c",
-          name:
-            "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
-          status: "completed",
-          collection: "tasks",
-          color: null
-        },
-        {
-          id: "aaba172e-ef08-7e5f-af40-6f3a1880c71c",
-          name:
-            "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
-          status: "completed",
-          collection: "tasks",
-          color: null
+          color: "#4DD87A",
         },
         {
           id: "aaba372e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat msdfsdessages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "completed",
           collection: "tasks",
-          color: "red"
+          color: "red",
         },
         {
           id: "aaba472e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "completed",
           collection: "tasks",
-          color: null
+          color: null,
         },
         {
           id: "aaba152e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1585140385174,
-          end: 1586040385174,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "completed",
           collection: "tasks",
-          color: null
+          color: null,
         },
         {
           id: "2f4ed0b8-5093-4d24-9d4f-c9e62bf047d5",
           name: "[Design] Redesign marketing website ",
-          start: 1578814148986,
-          end: 1579505348986,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "inProgress",
           collection: "tasks",
-          color: "#F8591E"
+          color: "#F8591E",
         },
         {
           id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
           name: "Research Libraries",
-          start: 1581604174191,
-          end: 1582061374191,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "toDo",
           collection: "tasks",
-          color: null
-        },
-        {
-          id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
-          name: "Research Libraries",
-          start: 1581604174191,
-          end: 1582061374191,
-          status: "toDo",
-          collection: "tasks",
-          color: null
+          color: null,
         },
         {
           id: "8acd82d4-e036-4e16-95bd-9410b0bf153c",
           name: "Setup Visual Studio",
-          start: 1579540791874,
-          end: 1579875591874,
+          start: 1590019300274,
+          end: 1591029300274,
           status: "toDo",
           collection: "tasks",
-          color: "#FF9A21"
-        }
+          color: "#FF9A21",
+        },
       ],
       selectedItem: {
         _id: "5e28ae9168d7960007ef7e19",
@@ -257,7 +212,7 @@ class App extends Component {
         createdBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
         createdOn: 1579724433431,
         modifiedBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
-        modifiedOn: 1579724433431
+        modifiedOn: 1579724433431,
       },
       timelineMode: "month",
       links: [
@@ -273,15 +228,15 @@ class App extends Component {
           createdBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
           createdOn: 1579724433431,
           modifiedBy: "697dadae-3bf3-4ddf-96c6-1f5e9ce3e47e",
-          modifiedOn: 1579724433431
-        }
+          modifiedOn: 1579724433431,
+        },
       ],
-      nonEditableName: false
+      nonEditableName: false,
     };
   }
 
   onHorizonChange = (start, end) => {
-    let result = this.state.data.filter(item => {
+    let result = this.state.data.filter((item) => {
       return (
         (item.start < start && item.end > end) ||
         (item.start > start && item.start < end) ||
@@ -291,7 +246,7 @@ class App extends Component {
     this.setState({ data: result });
   };
 
-  onSelectItem = item => {
+  onSelectItem = (item) => {
     this.setState({ selectedItem: item });
   };
 
@@ -301,7 +256,7 @@ class App extends Component {
     this.setState({ data: [...this.state.data] });
   };
 
-  onCreateLink = item => {
+  onCreateLink = (item) => {
     let newLink = Generator.createLink(item.start, item.end);
     this.setState({ links: [...this.state.links, newLink] });
     console.log(`Update Item ${item}`);
@@ -313,7 +268,7 @@ class App extends Component {
       : {};
   }
 
-  modeChange = value => {
+  modeChange = (value) => {
     this.setState({ timelineMode: value });
   };
 
@@ -358,7 +313,7 @@ class App extends Component {
       start: new Date(),
       end: this.getRandomDate(),
       name: "New Task",
-      color: this.getRandomColor()
+      color: this.getRandomColor(),
     };
     this.setState({ data: [newTask, ...this.state.data] });
   };
@@ -382,70 +337,6 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <div className="nav-container">
-          <div className="mode-container-title">Full Demo</div>
-          <div className="operation-button-container">
-            <div className="operation-button-container">
-              <div className="mode-button" onClick={this.addTask}>
-                <svg height={30} width={30} viewBox="0 0 48 48">
-                  <path
-                    fill="silver"
-                    d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10 22h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"
-                  />
-                </svg>
-              </div>
-              <div className="mode-button" onClick={this.delete}>
-                <svg height={30} width={30} viewBox="0 0 48 48">
-                  <path
-                    fill="silver"
-                    d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10 22H14v-4h20v4z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div className="mode-container">
-            <div
-              className="mode-container-item mode-container-item-left"
-              onClick={e => this.modeChange("day")}
-              style={this.getbuttonStyle("day")}
-            >
-              Day
-            </div>
-            <div
-              className="mode-container-item"
-              onClick={e => this.modeChange("week")}
-              style={this.getbuttonStyle("week")}
-            >
-              Week
-            </div>
-            <div
-              className="mode-container-item"
-              onClick={e => this.modeChange("month")}
-              style={this.getbuttonStyle("month")}
-            >
-              Month
-            </div>
-            <div
-              className="mode-container-item mode-container-item-right"
-              onClick={e => this.modeChange("year")}
-              style={this.getbuttonStyle("year")}
-            >
-              Year
-            </div>
-            <div
-              className="mode-container-item mode-container-item-editable-toggle"
-              style={{ marginLeft: "20px" }}
-              onClick={() => {
-                this.setState({
-                  nonEditableName: !this.state.nonEditableName
-                });
-              }}
-            >
-              {this.state.nonEditableName ? "Enable" : "Disable"} name edition
-            </div>
-          </div>
-        </div>
         <div className="time-line-container">
           <TimeLine
             dayWidth={40}

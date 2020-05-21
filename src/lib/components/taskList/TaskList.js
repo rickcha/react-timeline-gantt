@@ -22,7 +22,7 @@ export class TaskRow extends Component {
     super(props);
   }
 
-  onChange = value => {
+  onChange = (value) => {
     if (this.props.onUpdateTask) {
       this.props.onUpdateTask(this.props.item, { name: value });
     }
@@ -35,12 +35,20 @@ export class TaskRow extends Component {
         style={{
           ...Config.values.taskList.task.style,
           top: this.props.top,
-          height: this.props.itemheight
+          height: this.props.itemheight,
         }}
-        onClick={e => this.props.onSelectItem(this.props.item)}
+        onClick={(e) => this.props.onSelectItem(this.props.item)}
       >
         {this.props.nonEditable ? (
-          <div tabIndex={this.props.index} style={{ width: "100%" }}>
+          <div
+            tabIndex={this.props.index}
+            style={{
+              width: "100%",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+            }}
+          >
             {this.props.label}
           </div>
         ) : (

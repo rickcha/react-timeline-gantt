@@ -5,7 +5,7 @@ import {
   VIEW_MODE_DAY,
   VIEW_MODE_WEEK,
   VIEW_MODE_MONTH,
-  VIEW_MODE_YEAR
+  VIEW_MODE_YEAR,
 } from "libs/Const";
 import Config from "libs/helpers/config/Config";
 import DateHelper from "libs/helpers/DateHelper";
@@ -17,26 +17,41 @@ export class HeaderItem extends PureComponent {
   }
 
   render() {
-    let borderLeft = "solid 1px transparent";
-    let paddingVertical = 0;
+    const { header, weekday, today } = this.props;
+    const { style = {} } = Config.values.header[header];
 
-    if (Config.values.header[this.props.header]) {
-      const { style } = Config.values.header[this.props.header];
-      borderLeft = style.borderLeft || borderLeft;
-      paddingVertical = style.paddingVertical || borderLeft;
+    const styleToday = today
+      ? (header === "middle" && {
+          backgroundColor: "#6347FF",
+          color: "#fff",
+          borderTopRightRadius: "5px 5px",
+          borderTopLeftRadius: "5px 5px",
+        }) || { backgroundColor: "#6347FF", color: "#fff" }
+      : {};
+
+    let roundness = {};
+    let styleWeekend = { backgroundColor: "#F5F5F5" };
+    switch (weekday) {
+      case 6:
+        roundness =
+          (header === "middle" && {
+            borderTopLeftRadius: "5px 5px",
+          }) ||
+          {};
+        styleWeekend = { ...styleWeekend, ...roundness };
+        break;
+      case 0:
+        roundness =
+          (header === "middle" && {
+            borderTopRightRadius: "5px 5px",
+          }) ||
+          {};
+        styleWeekend = { ...styleWeekend, ...roundness };
+        break;
+      default:
+        styleWeekend = {};
+        break;
     }
-
-    const styleDate = this.props.dateToday && {
-      backgroundColor: "#6347FF",
-      color: "#fff",
-      borderTopRightRadius: "5px 5px",
-      borderTopLeftRadius: "5px 5px"
-    };
-
-    const styleDay = this.props.dayToday && {
-      backgroundColor: "#6347FF",
-      color: "#FFFFFF80"
-    };
 
     return (
       <div
@@ -44,18 +59,17 @@ export class HeaderItem extends PureComponent {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderLeft,
           position: "absolute",
           height: "100%",
           left: this.props.left,
           width: this.props.width,
-          paddingTop: paddingVertical,
-          paddingBottom: paddingVertical,
-          ...styleDate,
-          ...styleDay
+          ...style,
+          ...styleWeekend,
+          ...styleToday,
+          paddingLeft: this.props.header === "top" && 10,
         }}
       >
-        <div>{this.props.label}</div>
+        <div>{this.props.label.toUpperCase()}</div>
       </div>
     );
   }
@@ -72,7 +86,7 @@ export default class Header extends PureComponent {
       case "year":
         return "YYYY";
       case "month":
-        if (position == "top") return "MMMM YYYY";
+        if (position == "top") return "MMMM";
         else return "MMMM";
       case "week":
         if (position == "top") return "ww MMMM YYYY";
@@ -164,6 +178,7 @@ export default class Header extends PureComponent {
     let currentMiddle = "";
     let currentBottom = "";
     let currentDate = null;
+    let weekday = null;
     let box = null;
 
     let start = this.props.currentday;
@@ -172,6 +187,8 @@ export default class Header extends PureComponent {
     for (let i = start - BUFFER_DAYS; i < end + BUFFER_DAYS; i++) {
       //The unit of iteration is day
       currentDate = moment().add(i, "days");
+      weekday = currentDate.weekday();
+
       if (currentTop != currentDate.format(this.getFormat(top, "top"))) {
         currentTop = currentDate.format(this.getFormat(top, "top"));
         box = this.getBox(currentDate, top, lastLeft.top);
@@ -194,7 +211,8 @@ export default class Header extends PureComponent {
         result.middle.push(
           <HeaderItem
             key={i}
-            dateToday={i === 0}
+            today={i === 0}
+            weekday={weekday}
             header="middle"
             left={box.left}
             width={box.width}
@@ -213,11 +231,12 @@ export default class Header extends PureComponent {
           result.bottom.push(
             <HeaderItem
               key={i}
-              dayToday={i === 0}
+              today={i === 0}
+              weekday={weekday}
               header="bottom"
               left={box.left}
               width={box.width}
-              label={currentBottom}
+              label={currentBottom[0]}
             />
           );
         }
@@ -243,7 +262,7 @@ export default class Header extends PureComponent {
         </div>
         <div
           className="header-bottom"
-          style={{ ...Config.values.header.bottom.style }}
+          style={{ ...Config.values.header.bottom.style, borderBottomWidth: 0 }}
         >
           {result.bottom}
         </div>
