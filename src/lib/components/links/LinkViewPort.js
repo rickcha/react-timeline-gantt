@@ -143,20 +143,25 @@ export default class LinkViewPort extends Component {
           position: "absolute",
           top: 90,
           userSelect: "none",
-          height: "100%"
+          height: "100%",
         }}
       >
         <defs>
           <marker
             id="arrow"
-            viewBox="0 0 10 10"
+            viewBox="-5 0 10 10"
             refX="5"
             refY="5"
             markerWidth="9"
             markerHeight="9"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" strokeLinejoin="round" />
+            <path
+              stroke="black"
+              stroke-width="1"
+              d="M -5 0 L 5 5 L -5 10"
+              fill="none"
+            />
           </marker>
         </defs>
         <g

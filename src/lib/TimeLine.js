@@ -45,7 +45,7 @@ class TimeLine extends Component {
       nowposition: 0,
       startRow: 0, //
       endRow: 10,
-      sideStyle: { width: 200 },
+      sideStyle: { width: 224 },
       scrollLeft: 0,
       scrollTop: 0,
       numVisibleRows: 40,

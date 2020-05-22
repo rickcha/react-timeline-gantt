@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TimeLine from "libs/TimeLine";
 import Generator from "./Generator";
 import "./App.css";
+import { TASK_ROW_HEIGHT, TASK_MARGIN } from "../../lib/Const";
 
 const color = {
   // Lea's Design
@@ -87,7 +88,7 @@ let config = {
         fontSize: 14,
         whiteSpace: "nowrap",
         textAlign: "left",
-        lineHeight: "30px",
+        lineHeight: TASK_ROW_HEIGHT - TASK_MARGIN + "px",
         marginLeft: 10,
       },
       style: {
@@ -348,7 +349,7 @@ class App extends Component {
             onUpdateTask={this.onUpdateTask}
             onCreateLink={this.onCreateLink}
             mode={this.state.timelineMode}
-            itemheight={35}
+            itemheight={TASK_ROW_HEIGHT}
             selectedItem={this.state.selectedItem}
             nonEditableName={true}
           />
