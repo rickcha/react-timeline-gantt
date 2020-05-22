@@ -32,26 +32,50 @@ class Link extends Component {
 
   getPath = () => {
     let coordinates = null;
-    if (this.props.start.x > this.props.end.x) {
-      coordinates = this.calcSCoordinates();
-      return `M${this.props.start.x} ${this.props.start.y}  
-      ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y} 
-      q 5 0 5 5 L
-      ${coordinates.cpt2.x} ${coordinates.cpt2.y - 5} 
-      q 0 5 -5 5 L
-      ${coordinates.cpt3.x + 5} ${coordinates.cpt3.y} 
-      q -5 0 -5 5 L
-      ${coordinates.cpt4.x} ${coordinates.cpt4.y - 5} 
-      q 0 5 5 5 L
-      ${this.props.end.x} ${this.props.end.y}`;
+    if (this.props.start.y > this.props.end.y) {
+      if (this.props.start.x > this.props.end.x) {
+        coordinates = this.calcSCoordinates();
+        return `M${this.props.start.x} ${this.props.start.y}  
+        ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y} 
+        q 5 0 5 -5 L
+        ${coordinates.cpt2.x} ${coordinates.cpt2.y + 5} 
+        q 0 -5 -5 -5 L
+        ${coordinates.cpt3.x + 5} ${coordinates.cpt3.y} 
+        q -5 0 -5 -5 L
+        ${coordinates.cpt4.x} ${coordinates.cpt4.y + 5} 
+        q 0 -5 5 -5 L
+        ${this.props.end.x} ${this.props.end.y}`;
+      } else {
+        coordinates = this.calcNormCoordinates();
+        return `M${this.props.start.x} ${this.props.start.y} 
+        ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y}
+        q 5 0 5 -5 L
+        ${coordinates.cpt2.x} ${coordinates.cpt2.y + 5}
+        q 0 -5 5 -5 L
+        ${this.props.end.x} ${this.props.end.y}`;
+      }
     } else {
-      coordinates = this.calcNormCoordinates();
-      return `M${this.props.start.x} ${this.props.start.y} 
-      ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y}
-      q 5 0 5 5 L
-      ${coordinates.cpt2.x} ${coordinates.cpt2.y - 5}
-      q 0 5 5 5 L
-      ${this.props.end.x} ${this.props.end.y}`;
+      if (this.props.start.x > this.props.end.x) {
+        coordinates = this.calcSCoordinates();
+        return `M${this.props.start.x} ${this.props.start.y}  
+        ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y} 
+        q 5 0 5 5 L
+        ${coordinates.cpt2.x} ${coordinates.cpt2.y - 5} 
+        q 0 5 -5 5 L
+        ${coordinates.cpt3.x + 5} ${coordinates.cpt3.y} 
+        q -5 0 -5 5 L
+        ${coordinates.cpt4.x} ${coordinates.cpt4.y - 5} 
+        q 0 5 5 5 L
+        ${this.props.end.x} ${this.props.end.y}`;
+      } else {
+        coordinates = this.calcNormCoordinates();
+        return `M${this.props.start.x} ${this.props.start.y} 
+        ${coordinates.cpt1.x - 5} ${coordinates.cpt1.y}
+        q 5 0 5 5 L
+        ${coordinates.cpt2.x} ${coordinates.cpt2.y - 5}
+        q 0 5 5 5 L
+        ${this.props.end.x} ${this.props.end.y}`;
+      }
     }
   };
 
