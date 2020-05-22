@@ -47,6 +47,7 @@ export class TaskRow extends Component {
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
               overflow: "hidden",
+              outline: "none",
             }}
           >
             {this.props.label}
