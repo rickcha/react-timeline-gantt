@@ -158,7 +158,7 @@ export default class LinkViewPort extends Component {
           >
             <path
               stroke="black"
-              stroke-width="1"
+              strokeWidth="1"
               d="M -5 0 L 5 5 L -5 10"
               fill="none"
             />
