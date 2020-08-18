@@ -112,6 +112,9 @@ let config = {
 
 class App extends Component {
   constructor(props) {
+    const start = new Date().getTime();
+    const end = new Date().getTime() + 300000000;
+
     super(props);
     this.state = {
       itemheight: 30,
@@ -119,8 +122,8 @@ class App extends Component {
         {
           id: "c7f4f984-1b61-416c-903c-288eb6bc7406",
           name: "Username should be case-insensitive during login",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "inProgress",
           collection: "tasks",
           color: "#FF9A21",
@@ -128,8 +131,8 @@ class App extends Component {
         {
           id: "f6d40111-7c32-4a63-a30b-1381f276aabb",
           name: "User should be able to save empty text in email",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "toDo",
           collection: "tasks",
           color: null,
@@ -137,8 +140,8 @@ class App extends Component {
         {
           id: "8fb6c893-6140-4fc4-996c-621491989fac",
           name: "Backward compatibility with the previous db schema",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "underReview",
           collection: "tasks",
           color: "#4DD87A",
@@ -147,8 +150,8 @@ class App extends Component {
           id: "aaba372e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat msdfsdessages are not loading fast enough/incorrect order",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "completed",
           collection: "tasks",
           color: "red",
@@ -157,8 +160,8 @@ class App extends Component {
           id: "aaba472e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "completed",
           collection: "tasks",
           color: null,
@@ -167,8 +170,8 @@ class App extends Component {
           id: "aaba152e-ef08-4e5f-af40-6f3a1880c71c",
           name:
             "[Bug] Chat messages are not loading fast enough/incorrect order",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "completed",
           collection: "tasks",
           color: null,
@@ -176,8 +179,8 @@ class App extends Component {
         {
           id: "2f4ed0b8-5093-4d24-9d4f-c9e62bf047d5",
           name: "[Design] Redesign marketing website ",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "inProgress",
           collection: "tasks",
           color: "#F8591E",
@@ -185,8 +188,8 @@ class App extends Component {
         {
           id: "53cbafed-c69c-4739-8599-c3a2e9fbecb0",
           name: "Research Libraries",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "toDo",
           collection: "tasks",
           color: null,
@@ -194,8 +197,8 @@ class App extends Component {
         {
           id: "8acd82d4-e036-4e16-95bd-9410b0bf153c",
           name: "Setup Visual Studio",
-          start: 1590019300274,
-          end: 1591029300274,
+          start,
+          end,
           status: "toDo",
           collection: "tasks",
           color: "#FF9A21",

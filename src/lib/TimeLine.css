@@ -144,16 +144,18 @@
 }
 
 .timeLine-main-data-task-side-linker {
-  width: 8px;
-  height: 8px;
+  position: absolute;
+  width: 12px;
+  height: 100%;
   border-radius: 4px;
   cursor: default;
   z-index: 100;
+  right: 1px;
 }
 
 .timeLine-main-data-task-side-linker:hover {
-  background-color: black;
-  border: solid 0.5px grey;
+  background-color: white;
+  border: solid 0.5px #4136c0;
 }
 
 /* .timeLine-main-data-task:hover {
