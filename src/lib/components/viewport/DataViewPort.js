@@ -98,6 +98,7 @@ export class DataViewPort extends Component {
             onChildDrag={this.onChildDrag}
             isSelected={this.props.selectedItem == item}
             onSelectItem={this.props.onSelectItem}
+            onDoubleClickItem={this.props.onDoubleClickItem}
             onStartCreateLink={this.props.onStartCreateLink}
             onFinishCreateLink={this.props.onFinishCreateLink}
             onTaskChanging={this.props.onTaskChanging}

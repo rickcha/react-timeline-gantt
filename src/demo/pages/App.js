@@ -355,6 +355,7 @@ class App extends Component {
             itemheight={TASK_ROW_HEIGHT}
             selectedItem={this.state.selectedItem}
             nonEditableName={true}
+            onDoubleClickItem={() => {}}
           />
         </div>
       </div>

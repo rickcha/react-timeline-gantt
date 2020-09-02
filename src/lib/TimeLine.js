@@ -287,6 +287,10 @@ class TimeLine extends Component {
       this.props.onSelectItem(item);
   };
 
+  onDoubleClickItem = (item) => {
+    if (this.props.onDoubleClickItem) this.props.onDoubleClickItem(item);
+  };
+
   onStartCreateLink = (task, position) => {
     console.log(`Start Link ${task}`);
     this.setState({
@@ -409,6 +413,7 @@ class TimeLine extends Component {
             onTouchEnd={this.doTouchEnd}
             onTouchCancel={this.doTouchCancel}
             onSelectItem={this.onSelectItem}
+            onDoubleClickItem={this.onDoubleClickItem}
             onUpdateTask={this.props.onUpdateTask}
             onTaskChanging={this.onTaskChanging}
             onStartCreateLink={this.onStartCreateLink}

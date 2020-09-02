@@ -186,6 +186,9 @@ export default class DataTask extends Component {
         onClick={(e) => {
           this.props.onSelectItem(this.props.item);
         }}
+        onDoubleClick={(e) => {
+          this.props.onDoubleClickItem(this.props.item);
+        }}
         style={style}
       >
         <div
